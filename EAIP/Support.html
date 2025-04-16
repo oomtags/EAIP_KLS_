@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การเข้าถึงและการช่วยเหลือ | ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #c61313;
+            --secondary: #c61313;
+            --accent: #FFD700;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gradient: linear-gradient(145deg, #c61313, rgba(153, 50, 204, 0.8));
+            --success: #28a745;
+            --warning: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.25);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(15deg);
+        }
+        
+        .site-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .site-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .site-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin: 0 auto 20px;
+            max-width: 90%;
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            margin: 5px;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Introduction Section */
+        .intro-content {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .intro-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        /* Guide and FAQ Sections */
+        .guide-grid,
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .guide-card,
+        .faq-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .guide-card:hover,
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .guide-icon,
+        .faq-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .guide-title,
+        .faq-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .guide-content,
+        .faq-content {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .guide-details,
+        .faq-details {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        
+        .guide-details p,
+        .faq-details p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .guide-details ul,
+        .faq-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .guide-details li,
+        .faq-details li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .guide-details li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+        
+        .faq-details li::before {
+            content: '📌';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .toggle-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/100/100') center/50px repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .guide-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="Learning Resources.html">
+    <link rel="stylesheet" href="Support.html">
+    <link rel="stylesheet" href="Tracking and Progress.html">
+    <link rel="stylesheet" href="Courses.html">
+    <link rel="stylesheet" href="Community.html">
+    <link rel="stylesheet" href="About Us.html">
+    <link rel="stylesheet" href="Exercises and Projects.html">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <img src="img/EAIP_preview_rev_1.png" alt="Robot and AI Learning Center Logo" class="logo">
+                    <div class="site-title">
+                        <h1>โครงการห้องเรียนพิเศษทางด้านเทคโนโลยี EAIP-IoTp</h1>
+                        <h2>Engineering and Artificial Intelligence Program (EAIP)</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-list">
+                    
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="Courses.html" class="nav-link">หลักสูตร</a></li>
+                    <li class="nav-item"><a href="Learning Resources.html" class="nav-link">แหล่งเรียนรู้</a></li>
+                    <li class="nav-item"><a href="Exercises and Projects.html" class="nav-link">แบบฝึกหัดและโปรเจค</a></li>
+                    <li class="nav-item"><a href="Tracking and Progress.html" class="nav-link">ระบบติดตามผล</a></li>
+                    <li class="nav-item"><a href="Community.html" class="nav-link">ฟอรั่ม</a></li>
+                    <li class="nav-item"><a href="About Us.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="support.html" class="nav-link">ช่วยเหลือ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="introduction" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">การเข้าถึงและการช่วยเหลือ</h2>
+                <p class="section-subtitle">คู่มือการใช้งานและคำตอบสำหรับคำถามที่พบบ่อย</p>
+            </div>
+            
+            <div class="intro-content">
+                <p>ยินดีต้อนรับสู่หน้าสนับสนุนของศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์! ที่นี่คุณสามารถค้นหาคำแนะนำการใช้งานเว็บไซต์และคำตอบสำหรับคำถามที่พบบ่อย</p>
+                <p>หากคุณมีคำถามเพิ่มเติม สามารถใช้ฟอร์มด้านล่างเพื่อติดต่อเราได้เลย!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="guide" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คำแนะนำการใช้งานเว็บไซต์</h2>
+                <p class="section-subtitle">เรียนรู้วิธีใช้งานเว็บไซต์ของเราให้เต็มประสิทธิภาพ</p>
+            </div>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <div class="guide-icon">📖</div>
+                    <h3 class="guide-title">วิธีสมัครสมาชิก</h3>
+                    <p class="guide-content">เริ่มต้นใช้งานด้วยการสมัครสมาชิก</p>
+                    <button class="toggle-btn" onclick="toggleDetails('guide-details-1')">ดูรายละเอียด</button>
+                    <div id="guide-details-1" class="guide-details">
+                        <ul>
+                            <li>ไปที่หน้า "สมัครสมาชิก" จากเมนูหลัก</li>
+                            <li>กรอกข้อมูลส่วนตัว เช่น ชื่อ อีเมล และรหัสผ่าน</li>
+                            <li>ยืนยันอีเมลของคุณผ่านลิงก์ที่ส่งไป</li>
+                            <li>ล็อกอินเพื่อเริ่มใช้งาน</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-icon">📚</div>
+                    <h3 class="guide-title">วิธีสมัครหลักสูตร</h3>
+                    <p class="guide-content">สมัครเรียนหลักสูตรที่คุณสนใจ</p>
+                    <button class="toggle-btn" onclick="toggleDetails('guide-details-2')">ดูรายละเอียด</button>
+                    <div id="guide-details-2" class="guide-details">
+                        <ul>
+                            <li>ไปที่หน้า "หลักสูตร"</li>
+                            <li>เลือกหลักสูตรที่ต้องการ เช่น "พื้นฐานหุ่นยนต์"</li>
+                            <li>กดปุ่ม "สมัครเรียน"</li>
+                            <li>ยืนยันการสมัครและรอการตอบกลับจากทีมงาน</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-icon">📊</div>
+                    <h3 class="guide-title">วิธีตรวจสอบผลการเรียน</h3>
+                    <p class="guide-content">ติดตามความก้าวหน้าในแต่ละหลักสูตร</p>
+                    <button class="toggle-btn" onclick="toggleDetails('guide-details-3')">ดูรายละเอียด</button>
+                    <div id="guide-details-3" class="guide-details">
+                        <ul>
+                            <li>ไปที่หน้า "ระบบติดตามผล"</li>
+                            <li>เลือกหลักสูตรที่ต้องการตรวจสอบ</li>
+                            <li>กดปุ่ม "ดูรายละเอียด" เพื่อดูคะแนนและความคืบหน้า</li>
+                            <li>ตรวจสอบคำแนะนำเพื่อพัฒนาการเรียนรู้</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-icon">💬</div>
+                    <h3 class="guide-title">วิธีเข้าร่วมฟอรั่ม</h3>
+                    <p class="guide-content">พูดคุยและแชร์ความคิดเห็นในชุมชน</p>
+                    <button class="toggle-btn" onclick="toggleDetails('guide-details-4')">ดูรายละเอียด</button>
+                    <div id="guide-details-4" class="guide-details">
+                        <ul>
+                            <li>ไปที่หน้า "ฟอรั่ม"</li>
+                            <li>เลือกหมวดหมู่ เช่น "พื้นที่พูดคุย" หรือ "ถาม-ตอบ"</li>
+                            <li>กดปุ่ม "สร้างโพสต์ใหม่" เพื่อตั้งคำถามหรือแชร์ความคิด</li>
+                            <li>ตอบกลับโพสต์ของผู้อื่นเพื่อร่วมสนทนา</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คำถามที่พบบ่อย (FAQ)</h2>
+                <p class="section-subtitle">คำตอบสำหรับคำถามที่ผู้ใช้มักสงสัย</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <div class="faq-icon">❓</div>
+                    <h3 class="faq-title">สมัครสมาชิกต้องเสียเงินหรือไม่?</h3>
+                    <p class="faq-content">คำถามเกี่ยวกับการสมัครสมาชิก</p>
+                    <button class="toggle-btn" onclick="toggleDetails('faq-details-1')">ดูคำตอบ</button>
+                    <div id="faq-details-1" class="faq-details">
+                        <p>การสมัครสมาชิกฟรีสำหรับผู้ใช้ทั่วไป แต่บางหลักสูตรอาจมีค่าใช้จ่าย สามารถตรวจสอบรายละเอียดได้ที่หน้า "หลักสูตร"</p>
+                    </div>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-icon">❓</div>
+                    <h3 class="faq-title">ลืมรหัสผ่านต้องทำอย่างไร?</h3>
+                    <p class="faq-content">คำถามเกี่ยวกับการลืมรหัสผ่าน</p>
+                    <button class="toggle-btn" onclick="toggleDetails('faq-details-2')">ดูคำตอบ</button>
+                    <div id="faq-details-2" class="faq-details">
+                        <p>ไปที่หน้า "ล็อกอิน" และกด "ลืมรหัสผ่าน" จากนั้นกรอกอีเมลของคุณ ระบบจะส่งลิงก์สำหรับรีเซ็ตรหัสผ่านให้</p>
+                    </div>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-icon">❓</div>
+                    <h3 class="faq-title">สามารถเรียนหลักสูตรย้อนหลังได้หรือไม่?</h3>
+                    <p class="faq-content">คำถามเกี่ยวกับการเรียนย้อนหลัง</p>
+                    <button class="toggle-btn" onclick="toggleDetails('faq-details-3')">ดูคำตอบ</button>
+                    <div id="faq-details-3" class="faq-details">
+                        <p>ได้ค่ะ คุณสามารถเข้าถึงเนื้อหาการเรียนย้อนหลังได้ในหน้า "แหล่งเรียนรู้" โดยเลือกหลักสูตรที่ต้องการ</p>
+                    </div>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-icon">❓</div>
+                    <h3 class="faq-title">ติดต่อทีมงานได้ที่ไหน?</h3>
+                    <p class="faq-content">คำถามเกี่ยวกับการติดต่อ</p>
+                    <button class="toggle-btn" onclick="toggleDetails('faq-details-4')">ดูคำตอบ</button>
+                    <div id="faq-details-4" class="faq-details">
+                        <p>คุณสามารถใช้ฟอร์มด้านล่างเพื่อส่งคำถาม หรือติดต่อเราผ่านอีเมล: email@robotai-center.com หรือโทร: 123-456-7890</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+       
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>เกี่ยวกับเรา</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="about.html#vision-mission">วิสัยทัศน์และพันธกิจ</a></li>
+                        <li class="footer-link"><a href="about.html#instructors">ทีมอาจารย์</a></li>
+                        <li class="footer-link"><a href="about.html#history">ประวัติศูนย์</a></li>
+                        <li class="footer-link"><a href="about.html#achievements">รางวัลและความสำเร็จ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ลิงก์ด่วน</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="courses.html">หลักสูตร</a></li>
+                        <li class="footer-link"><a href="resources.html">แหล่งเรียนรู้</a></li>
+                        <li class="footer-link"><a href="exercises.html">แบบฝึกหัดและโปรเจค</a></li>
+                        <li class="footer-link"><a href="tracking.html">ระบบติดตามผล</a></li>
+                        <li class="footer-link"><a href="forum.html">ฟอรั่ม</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ติดต่อเรา</h3>
+                    <div class="contact-info">
+                        <span class="contact-icon">📧</span>
+                        <p>email@robotai-center.com</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📞</span>
+                        <p>123-456-7890</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📍</span>
+                        <p>123 ถนนนวัตกรรม แขวงเทคโนโลยี เขตปัญญาประดิษฐ์ กรุงเทพฯ</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61560814240110&locale=th_TH" class="social-link">FB</a>
+                        <a href="#" class="social-link">TW</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">YT</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

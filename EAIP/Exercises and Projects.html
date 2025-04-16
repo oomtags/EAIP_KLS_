@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัดและโปรเจค | ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #c61313;
+            --secondary: #c61313;
+            --accent: #FFD700;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gradient: linear-gradient(145deg, #c61313, rgba(153, 50, 204, 0.8));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.25);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(15deg);
+        }
+        
+        .site-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .site-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .site-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin: 0 auto 20px;
+            max-width: 90%;
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            margin: 5px;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Introduction Section */
+        .intro-content {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .intro-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        /* Exercises Section */
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .exercise-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .exercise-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .exercise-desc {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Quiz Section */
+        .quiz-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .quiz-answer {
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .project-level {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .project-desc {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Tips Section */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .tip-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .tip-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .tip-desc {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/100/100') center/50px repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .exercises-grid,
+            .projects-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+   <link rel="stylesheet" href="index.html">
+   <link rel="stylesheet" href="Learning Resources.html">
+   <link rel="stylesheet" href="Support.html">
+   <link rel="stylesheet" href="Tracking and Progress.html">
+   <link rel="stylesheet" href="Courses.html">
+   <link rel="stylesheet" href="Community.html">
+   <link rel="stylesheet" href="About Us.html">
+   <link rel="stylesheet" href="Exercises and Projects.html">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <img src="img/EAIP_preview_rev_1.png" alt="Robot and AI Learning Center Logo" class="logo">
+                    <div class="site-title">
+                        <h1>โครงการห้องเรียนพิเศษทางด้านเทคโนโลยี EAIP-IoTp</h1>
+                        <h2>Engineering and Artificial Intelligence Program (EAIP)</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-list">
+                    
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="Courses.html" class="nav-link">หลักสูตร</a></li>
+                    <li class="nav-item"><a href="Learning Resources.html" class="nav-link">แหล่งเรียนรู้</a></li>
+                    <li class="nav-item"><a href="Exercises and Projects.html" class="nav-link">แบบฝึกหัดและโปรเจค</a></li>
+                    <li class="nav-item"><a href="Tracking and Progress.html" class="nav-link">ระบบติดตามผล</a></li>
+                    <li class="nav-item"><a href="Community.html" class="nav-link">ฟอรั่ม</a></li>
+                    <li class="nav-item"><a href="About Us.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="support.html" class="nav-link">ช่วยเหลือ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="introduction" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">เกี่ยวกับแบบฝึกหัดและโปรเจค</h2>
+                <p class="section-subtitle">ฝึกฝนทักษะด้านหุ่นยนต์และ AI ผ่านแบบฝึกหัด คำถามทดสอบ และโปรเจคจริง</p>
+            </div>
+            
+            <div class="intro-content">
+                <p>ส่วนแบบฝึกหัดและโปรเจคของศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์ถูกออกแบบมาเพื่อช่วยให้ผู้เรียนพัฒนาทักษะผ่านการฝึกฝนจริง</p>
+                <p>คุณสามารถเลือกทำแบบฝึกหัดเพื่อฝึกทักษะพื้นฐาน ทดสอบความรู้ด้วยคำถามทดสอบ หรือลองทำโปรเจคที่ท้าทายเพื่อประยุกต์ใช้ความรู้</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="exercises" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">แบบฝึกหัด</h2>
+                <p class="section-subtitle">ฝึกฝนทักษะด้านหุ่นยนต์และ AI ผ่านแบบฝึกหัดที่หลากหลาย</p>
+            </div>
+            
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-icon">🤖</div>
+                    <h3 class="exercise-title">เขียนโปรแกรมควบคุม Lotus Nano Bot</h3>
+                    <p class="exercise-desc">ฝึกเขียนโค้ดเพื่อควบคุมหุ่นยนต์ Lotus Nano Bot ให้เคลื่อนที่ตามเส้นทางที่กำหนด</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-icon">💻</div>
+                    <h3 class="exercise-title">สร้างโมเดล AI ด้วย Python</h3>
+                    <p class="exercise-desc">ฝึกสร้างโมเดล Machine Learning ง่ายๆ เพื่อจำแนกข้อมูลโดยใช้ Python</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-icon">🔌</div>
+                    <h3 class="exercise-title">ใช้งานเซนเซอร์ตรวจจับสิ่งกีดขวาง</h3>
+                    <p class="exercise-desc">ฝึกต่อวงจรและเขียนโค้ดเพื่อใช้เซนเซอร์ตรวจจับสิ่งกีดขวางในหุ่นยนต์</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-icon">📊</div>
+                    <h3 class="exercise-title">วิเคราะห์ข้อมูลด้วย Pandas</h3>
+                    <p class="exercise-desc">ฝึกใช้ Pandas เพื่อวิเคราะห์และจัดการข้อมูลสำหรับโปรเจค AI</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-icon">🖥️</div>
+                    <h3 class="exercise-title">ออกแบบวงจรด้วย Tinkercad</h3>
+                    <p class="exercise-desc">ฝึกออกแบบวงจรอิเล็กทรอนิกส์สำหรับหุ่นยนต์โดยใช้เครื่องมือ Tinkercad</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-icon">📝</div>
+                    <h3 class="exercise-title">สร้าง Neural Network ด้วย TensorFlow</h3>
+                    <p class="exercise-desc">ฝึกสร้าง Neural Network ง่ายๆ เพื่อแก้ปัญหาการจำแนกข้อมูล</p>
+                    <a href="#" class="btn">ดาวน์โหลดแบบฝึกหัด</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คำถามทดสอบ</h2>
+                <p class="section-subtitle">ทดสอบความรู้ด้านหุ่นยนต์และ AI ด้วยคำถามทดสอบ</p>
+            </div>
+            
+            <div class="quiz-list">
+                <div class="quiz-item">
+                    <h3 class="quiz-question">1. ฟังก์ชันหลักของเซนเซอร์ในหุ่นยนต์คืออะไร?</h3>
+                    <p class="quiz-answer">คำตอบ: เพื่อตรวจจับและส่งข้อมูลจากสภาพแวดล้อม เช่น ระยะทาง อุณหภูมิ หรือแสง เพื่อให้หุ่นยนต์ตัดสินใจได้</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <h3 class="quiz-question">2. Neural Network คืออะไร?</h3>
+                    <p class="quiz-answer">คำตอบ: Neural Network เป็นโมเดลใน AI ที่เลียนแบบการทำงานของสมองมนุษย์ ใช้ในการเรียนรู้และจำแนกข้อมูล</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <h3 class="quiz-question">3. ภาษาโปรแกรมใดที่นิยมใช้ในงาน AI มากที่สุด?</h3>
+                    <p class="quiz-answer">คำตอบ: Python เนื่องจากมีไลบรารีที่หลากหลาย เช่น TensorFlow, Pandas และ Scikit-learn</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <h3 class="quiz-question">4. Arduino ใช้ทำอะไรในงานหุ่นยนต์?</h3>
+                    <p class="quiz-answer">คำตอบ: Arduino ใช้เป็นบอร์ดไมโครคอนโทรลเลอร์สำหรับควบคุมการทำงานของหุ่นยนต์ เช่น การเคลื่อนไหวหรือการประมวลผลข้อมูลจากเซนเซอร์</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <h3 class="quiz-question">5. อะไรคือข้อดีของการใช้ Tinkercad ในการออกแบบวงจร?</h3>
+                    <p class="quiz-answer">คำตอบ: Tinkercad เป็นเครื่องมือออนไลน์ที่ใช้งานง่าย ช่วยจำลองวงจรและทดสอบการทำงานได้โดยไม่ต้องใช้ฮาร์ดแวร์จริง</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <h3 class="quiz-question">6. ไลบรารีใดที่ใช้ในการสร้าง Neural Network ใน Python?</h3>
+                    <p class="quiz-answer">คำตอบ: TensorFlow และ Keras เป็นไลบรารีที่นิยมใช้ในการสร้าง Neural Network</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">โปรเจคที่ต้องทำหรือตัวอย่าง</h2>
+                <p class="section-subtitle">ลองทำโปรเจคจริงเพื่อประยุกต์ใช้ความรู้ด้านหุ่นยนต์และ AI</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🚗</div>
+                    <h3 class="project-title">หุ่นยนต์หลบสิ่งกีดขวาง</h3>
+                    <p class="project-level">ระดับ: เริ่มต้น</p>
+                    <p class="project-desc">สร้างหุ่นยนต์ที่ใช้เซนเซอร์อัลตราโซนิกเพื่อหลบสิ่งกีดขวางโดยอัตโนมัติ</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">หุ่นยนต์ตามเส้นด้วย Lotus Nano Bot</h3>
+                    <p class="project-level">ระดับ: เริ่มต้น</p>
+                    <p class="project-desc">พัฒนาหุ่นยนต์ Lotus Nano Bot ให้เคลื่อนที่ตามเส้นโดยใช้เซนเซอร์ตรวจจับเส้น</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">📸</div>
+                    <h3 class="project-title">ระบบจดจำภาพด้วย AI</h3>
+                    <p class="project-level">ระดับ: ปานกลาง</p>
+                    <p class="project-desc">สร้างโมเดล AI เพื่อจดจำภาพ เช่น จำแนกประเภทของวัตถุในภาพ โดยใช้ Python และ TensorFlow</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🌡️</div>
+                    <h3 class="project-title">ระบบตรวจวัดอุณหภูมิอัตโนมัติ</h3>
+                    <p class="project-level">ระดับ: ปานกลาง</p>
+                    <p class="project-desc">สร้างระบบที่ใช้เซนเซอร์วัดอุณหภูมิและส่งข้อมูลไปยังคอมพิวเตอร์โดยใช้ Arduino</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🗣️</div>
+                    <h3 class="project-title">แชทบอท AI ง่ายๆ</h3>
+                    <p class="project-level">ระดับ: ปานกลาง</p>
+                    <p class="project-desc">พัฒนาแชทบอทที่ตอบคำถามง่ายๆ โดยใช้ Python และเทคนิค Natural Language Processing (NLP)</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🚀</div>
+                    <h3 class="project-title">หุ่นยนต์ควบคุมด้วย AI</h3>
+                    <p class="project-level">ระดับ: ขั้นสูง</p>
+                    <p class="project-desc">สร้างหุ่นยนต์ที่ควบคุมด้วย AI เพื่อตัดสินใจเคลื่อนที่โดยใช้ข้อมูลจากเซนเซอร์หลายตัว</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🎤</div>
+                    <h3 class="project-title">ระบบสั่งงานด้วยเสียง</h3>
+                    <p class="project-level">ระดับ: ขั้นสูง</p>
+                    <p class="project-desc">พัฒนาระบบที่ให้หุ่นยนต์ตอบสนองต่อคำสั่งเสียงโดยใช้ AI และการประมวลผลเสียง</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">📡</div>
+                    <h3 class="project-title">หุ่นยนต์ควบคุมผ่าน Wi-Fi</h3>
+                    <p class="project-level">ระดับ: ขั้นสูง</p>
+                    <p class="project-desc">สร้างหุ่นยนต์ที่สามารถควบคุมผ่าน Wi-Fi โดยใช้ ESP8266 และแอปพลิเคชัน</p>
+                    <a href="#" class="btn">ดาวน์โหลดคู่มือโปรเจค</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tips" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คำแนะนำเพิ่มเติม</h2>
+                <p class="section-subtitle">เคล็ดลับที่ช่วยให้คุณทำแบบฝึกหัดและโปรเจคได้ดียิ่งขึ้น</p>
+            </div>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">💡</div>
+                    <h3 class="tip-title">เริ่มจากสิ่งเล็กๆ</h3>
+                    <p class="tip-desc">เลือกแบบฝึกหัดหรือโปรเจคที่เหมาะกับระดับความรู้ของคุณ และค่อยๆ เพิ่มความท้าทายเมื่อคุณมั่นใจมากขึ้น</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">📚</div>
+                    <h3 class="tip-title">ใช้แหล่งเรียนรู้</h3>
+                    <p class="tip-desc">อ่านเอกสารและดูวิดีโอการสอนในหน้าแหล่งเรียนรู้ เพื่อช่วยให้คุณเข้าใจแนวคิดพื้นฐานก่อนลงมือทำ</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">💻</div>
+                    <h3 class="tip-title">ทดลองและแก้ไขโค้ด</h3>
+                    <p class="tip-desc">อย่ากลัวที่จะทดลองปรับแต่งโค้ด การเรียนรู้จากการแก้ไขข้อผิดพลาดจะช่วยให้คุณเข้าใจลึกซึ้งยิ่งขึ้น</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">🤝</div>
+                    <h3 class="tip-title">ปรึกษาในฟอรั่ม</h3>
+                    <p class="tip-desc">หากติดปัญหา ลองโพสต์คำถามในฟอรั่มของเรา เพื่อขอคำแนะนำจากผู้เรียนคนอื่นหรือผู้สอน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>เกี่ยวกับเรา</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="about.html#vision-mission">วิสัยทัศน์และพันธกิจ</a></li>
+                        <li class="footer-link"><a href="about.html#instructors">ทีมอาจารย์</a></li>
+                        <li class="footer-link"><a href="about.html#history">ประวัติศูนย์</a></li>
+                        <li class="footer-link"><a href="about.html#achievements">รางวัลและความสำเร็จ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ลิงก์ด่วน</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="courses.html">หลักสูตร</a></li>
+                        <li class="footer-link"><a href="resources.html">แหล่งเรียนรู้</a></li>
+                        <li class="footer-link"><a href="exercises.html">แบบฝึกหัดและโปรเจค</a></li>
+                        <li class="footer-link"><a href="index.html#tracking">ระบบติดตามผล</a></li>
+                        <li class="footer-link"><a href="index.html#forum">ฟอรั่ม</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ติดต่อเรา</h3>
+                    <div class="contact-info">
+                        <span class="contact-icon">📧</span>
+                        <p>email@robotai-center.com</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📞</span>
+                        <p>123-456-7890</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📍</span>
+                        <p>123 ถนนนวัตกรรม แขวงเทคโนโลยี เขตปัญญาประดิษฐ์ กรุงเทพฯ</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61560814240110&locale=th_TH" class="social-link">FB</a>
+                        <a href="#" class="social-link">TW</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">YT</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

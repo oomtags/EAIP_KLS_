@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา | ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #c61313;
+            --secondary: #c61313;
+            --accent: #FFD700;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gradient: linear-gradient(145deg, #c61313, rgba(153, 50, 204, 0.8));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.25);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(15deg);
+        }
+        
+        .site-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .site-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .site-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin: 0 auto 20px;
+            max-width: 90%;
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            margin: 5px;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Introduction Section */
+        .intro-content {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .intro-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        /* Instructor Section */
+        .director-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .director-card {
+            text-align: center;
+        }
+
+        .director-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px dotted #c61313;
+            object-fit: cover;
+        }
+
+        .director-name {
+            font-size: 24px;
+            margin: 10px 0 5px;
+            color: var(--primary);
+        }
+
+        .director-role {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .instructor-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .instructor-row {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .instructor-card {
+            text-align: center;
+            flex: 1 1 22%;
+            max-width: 220px;
+        }
+
+        .instructor-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px dotted #c61313;
+            object-fit: cover;
+        }
+
+        .instructor-name {
+            font-size: 20px;
+            margin: 10px 0 5px;
+            color: var(--primary);
+        }
+
+        .instructor-role {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* History Section */
+        .history-content {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .history-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        /* Vision & Mission Section */
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .vision-mission-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 5px solid transparent;
+        }
+        
+        .vision-mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--accent);
+        }
+        
+        .vision-mission-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(106, 13, 173, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .vision-mission-card:hover .vision-mission-icon {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: rotateY(360deg);
+            transition: all 0.5s ease;
+        }
+        
+        .vision-mission-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .vision-mission-desc {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .achievement-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .achievement-desc {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ Section */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer {
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/100/100') center/50px repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .instructor-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .instructor-card {
+                max-width: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="Learning Resources.html">
+    <link rel="stylesheet" href="Support.html">
+    <link rel="stylesheet" href="Tracking and Progress.html">
+    <link rel="stylesheet" href="Courses.html">
+    <link rel="stylesheet" href="Community.html">
+    <link rel="stylesheet" href="About Us.html">
+    <link rel="stylesheet" href="Exercises and Projects.html">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <img src="img/EAIP_preview_rev_1.png" alt="Robot and AI Learning Center Logo" class="logo">
+                    <div class="site-title">
+                        <h1>โครงการห้องเรียนพิเศษทางด้านเทคโนโลยี EAIP-IoTp</h1>
+                        <h2>Engineering and Artificial Intelligence Program (EAIP)</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="Courses.html" class="nav-link">หลักสูตร</a></li>
+                    <li class="nav-item"><a href="Learning Resources.html" class="nav-link">แหล่งเรียนรู้</a></li>
+                    <li class="nav-item"><a href="Exercises and Projects.html" class="nav-link">แบบฝึกหัดและโปรเจค</a></li>
+                    <li class="nav-item"><a href="Tracking and Progress.html" class="nav-link">ระบบติดตามผล</a></li>
+                    <li class="nav-item"><a href="Community.html" class="nav-link">ฟอรั่ม</a></li>
+                    <li class="nav-item"><a href="About Us.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="support.html" class="nav-link">ช่วยเหลือ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="introduction" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ศูนย์การเรียนรู้</h2>
+                <p class="section-subtitle">รู้จักกับศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์ของเรา</p>
+            </div>
+            
+            <div class="intro-content">
+                <p>ครูศูนย์RAILโรงเรียนกมลาไสย จำนวน   11 คนครูผู้สอนมีความเชี่ยวชาญในการ จัดการเรียนการสอนด้าน IoT</p>
+                <p>หุ่นยนต์ และปัญญาประดิษฐ์ และเป็นคณะกรรมการใน สพฐ สสวท ในการจัดทำหลักสูตร และแผนการจัดการเรียนรู้ในรายวิชาการออกแบบเทคโนโลยี  วิชาวิทยาการคำนวณ วิชาเทคโนโลยี และหลักสูตรปัญญาประดิษฐ์</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">คณะทำงานโครงการEAIP</h2>
+                <p class="section-subtitle"></p>
+            </div>
+            
+            <!-- แถวสำหรับผู้อำนวยการ -->
+            <div class="director-row">
+                <div class="director-card">
+                    <img src="img/01-ผอ.วรุตม์-2-248x300.jpg" alt="นายจตุรงค์ กมลเลิศ" class="director-img">
+                    <div class="director-content">
+                        <h3 class="director-name">นายวรุตม์ เขจรสัตย์</h3>
+                        <p class="director-role">ประธานโครงการ EAIP</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แถวสำหรับอาจารย์ 28 คน (7 แถว แถวละ 4 คน) -->
+            <div class="instructor-grid">
+                <!-- แถวที่ 1 -->
+                <div class="instructor-row">
+                    <div class="instructor-card">
+                        <img src="img/สมคิด.jpg" alt="คุณครูกล่อมจิต ดอนภิรมย์" class="instructor-img">
+                        <h3 class="instructor-name">นายสมคิด ปทุมวัน
+
+                        </h3>
+                        <p class="instructor-role">รองประธานโครงการ EAIP</p>
+                    </div>
+                    <div class="instructor-card">
+                        <img src="img/j.jpg" alt="คุณครูสุชาติ กมลนัด" class="instructor-img">
+                        <h3 class="instructor-name">นายจตุรงค์ กมลเลิศ
+                        </h3>
+                        <p class="instructor-role">หัวหน้าโครงการ EAIP</p>
+                    </div>
+                    <div class="instructor-card">
+                        <img src="img/พลกฤษณ์-1.png" alt="คุณครูมารุต วรสาร" class="instructor-img">
+                        <h3 class="instructor-name">นายพลกฤษณ์ รินทรึก</h3>
+                        <p class="instructor-role">รองหัวหน้าโครงการ EAIP</p>
+                    </div>
+                    <div class="instructor-card">
+                        <img src="img/นางสาวสารฤทธิ์  โพธิราช .jpg" alt="ดร.อรุณี ปัญญา" class="instructor-img">
+                        <h3 class="instructor-name">นางสารฤทธิ์ โพธิราช</h3>
+                        <p class="instructor-role">เลขานุการโครงการ EAIP
+                            </p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">คณะทำงานโครงการEAIP 
+                        </h2>
+                        <p class="section-subtitle">ทั้ง 4 คณะ</p>
+                    </div>
+                    
+                    <!-- แถวสำหรับผู้อำนวยการ -->
+                  
+        
+                    <!-- แถวสำหรับอาจารย์ 28 คน (7 แถว แถวละ 4 คน) -->
+                    <div class="instructor-grid">
+                        <!-- แถวที่ 1 -->
+                        <div class="instructor-row">
+                            <div class="instructor-card">
+                                <img src="img/นางสาวชัญญานุช  รัตนวิชัย.jpg" alt="คุณครูกล่อมจิต ดอนภิรมย์" class="instructor-img">
+                                <h3 class="instructor-name">นส. ชัญญานุข รัตนวิชัย
+        
+                                </h3>
+                                <b>งานบริหารวิชาการ</b>
+                                <p class="instructor-role">งานบริหารวิชาการ</p>
+                            </div>
+                            <div class="instructor-card">
+                                <img src="img/นางสาวอภิรดี สืบชมภู.png" alt="คุณครูสุชาติ กมลนัด" class="instructor-img">
+                                <h3 class="instructor-name">นส.อภิรดี สืบชมภู                                    
+                                </h3>
+                                <b>งานงบประมาณ</b>
+                                <p class="instructor-role">งานแผนงาน</p>
+                            </div>
+                            <div class="instructor-card">
+                                <img src="img/นางพวงลดา  วรสาร.jpg" alt="คุณครูมารุต วรสาร" class="instructor-img">
+                                <h3 class="instructor-name">นางพวงลดา วรสาร</h3>
+                                <b>งานอำนวยการ</b>
+                                <p class="instructor-role">งานบริหารบุคคล</p>
+                            </div>
+                            <div class="instructor-card">
+                                <img src="img/นายสิรภพ บุญสวัสดิ์.jpg" alt="ดร.อรุณี ปัญญา" class="instructor-img">
+                                <h3 class="instructor-name">นายสิรภพ บุญสวัสดิ์</h3>
+                                <b>งานกิจการนักเรียน</b>
+                                <p class="instructor-role">งานกิจการนักเรียน
+                                    </p>
+                            </div>
+                        </div>
+
+                        <div class="instructor-grid">
+                            <!-- แถวที่ 1 -->
+                            <div class="instructor-row">
+                                <div class="instructor-card">
+                                    <img src="img/นส.ศิวรินทร์ ตาละชีพ.jpg" alt="คุณครูกล่อมจิต ดอนภิรมย์" class="instructor-img">
+                                    <h3 class="instructor-name">นส.ศิวรินทร์ ตาละชีพ
+            
+                                    </h3>
+                                    <b>งานบริหารวิชาการ</b>
+                                    <p class="instructor-role">งานพัฒนาหลักสูตร</p>
+                                </div>
+                                <div class="instructor-card">
+                                    <img src="img/04พชรกร-1.jpg" alt="คุณครูสุชาติ กมลนัด" class="instructor-img">
+                                    <h3 class="instructor-name">นส.พชรกร ภูภักดิ์                                   
+                                    </h3>
+                                    <b>งานงบประมาณ</b>
+                                    <p class="instructor-role">การเงินและบัญชี</p>
+                                </div>
+                                <div class="instructor-card">
+                                    <img src="img/08ธีรวัฒน์-1.jpg" alt="คุณครูมารุต วรสาร" class="instructor-img">
+                                    <h3 class="instructor-name">นายธีรวัฒน์ สุธิปัญโญ
+                                        </h3>
+                                    <b>งานอำนวยการ</b>
+                                    <p class="instructor-role">งานอาคารสถานที่</p>
+                                </div>
+                                <div class="instructor-card">
+                                    <img src="img/pron.jpg" alt="ดร.อรุณี ปัญญา" class="instructor-img">
+                                    <h3 class="instructor-name">
+                                        นส.นวพร โชติจำลอง</h3>
+                                    <b>งานกิจการนักเรียน</b>
+                                    <p class="instructor-role">ผู้ช่วยงานกิจการนักเรียน
+                                        </p>
+                                </div>
+                            </div>
+                </div>
+        </div>
+        
+    </section>
+
+    <section id="history" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Target Future of Student in EAIP</h2>
+                <p class="section-subtitle">เส้นทางการเติบโตของศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์</p>
+            </div>
+            
+            <div class="history-content">
+                <p>1. นักเรียนคิดเป็น ทำเป็น เรียนรู้ โดยใช้ทักษะกระบวนการทางวิทยาศาสตร์ ร่วมกับความรู้ทาง <br> ด้านวิศวกรรมและปัญญาประดิษฐ์ ในการแก้ปัญหาพร้อมทั้งนำความรู้ไปใช้ในชีวิตประจำวันได้
+                   <br> 2. นักเรียนมีความเป็นเลิศทางด้านวิศวกรรมศาสตร์และปัญญาประดิษฐ์  โดยจัดการเรียนรู้ได้อย่างเป็นระบบตามมาตรฐานสากลอย่างมีประสิทธิภาพ
+                   <br> 3. นักเรียนได้เข้าร่วมกิจกรรมทางวิชาการ และได้เผยแพร่ผลงานกับหน่วยงานทุกระดับ
+                  <br> 4.นักเรียนสามารถพัฒนานวัตกรรมด้านวิศวกรรมศาสตร์และปัญญาประดิษฐ์ที่หลากหลาย และทันสมัย
+                <br>    5. นักเรียนมีคุณธรรม จริยธรรมและจิตสำนึกที่ดี
+                 </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision-mission" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">วิสัยทัศน์และวัตถุประสงค์</h2>
+                <p class="section-subtitle">ความมุ่งมั่นของเราในการพัฒนาการเรียนรู้ด้านหุ่นยนต์และ AI</p>
+            </div>
+            
+            <div class="vision-mission-grid">
+                <div class="vision-mission-card">
+                    <div class="vision-mission-icon">🌟</div>
+                    <h3 class="vision-mission-title">วิสัยทัศน์</h3>
+                    <p class="vision-mission-desc"> มุ่งมั่นพัฒนาผู้เรียนสู่ความเป็นเลิศทางด้านวิศวกรรมศาสตร์และปัญญาประดิษฐ์ เป็นบุคคลที่มีคุณภาพตามมาตรฐานสากลและมีส่วนร่วมในการพัฒนาสังคม
+                    </p>
+                </div>
+                
+                <div class="vision-mission-card">
+                    <div class="vision-mission-icon">🤝</div>
+                    <h3 class="vision-mission-title">วัตถุประสงค์</h3>
+                    <p class="vision-mission-desc">1.จัดหลักสูตรเพื่อพัฒนาผู้เรียนสู่ความเป็นเลิศทางวิทยาศาสตร์ คณิตศาสตร์ เทคโนโลยี โดยเน้นความเป็นเลิศทางด้านวิศวรรมและปัญญาประดิษฐ์
+                       <br> 2.จัดกิจกรรมเสริมหลักสูตรเพื่อพัฒนาศักยภาพผู้เรียนตามมาตรฐานสากล
+                        3.ส่งเสริมการเข้าร่วมกิจกรรมทางวิชาการกับหน่วยงานทุกระดับ
+                    <br>    4.จัดกิจกรรมเสริมสร้างด้านคุณธรรม จริยธรรม สร้างจิตสำนึกสำนึกที่ดีให้ผู้เรียนเป็นคนดี ดำรงชีวิตอยู่ในสังคมได้อย่างมีความสุข
+                 </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">รางวัลและความสำเร็จ</h2>
+                <p class="section-subtitle">ความสำเร็จที่ศูนย์ของเราได้รับจากการพัฒนาการเรียนรู้ด้านเทคโนโลยี</p>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3 class="achievement-title">22 มกราคม 2568</h3>
+                    <p class="achievement-desc">คว้าโล่รางวัลชนะเลิศหุ่นยนต์ในชีวิตประจำวัน หุ่นยนต์ทำความสะอาด ระดับมัธยมศึกษาตอนปลาย</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏅</div>
+                    <h3 class="achievement-title">21 พฤศจิกายน  2567</h3>
+                    <p class="achievement-desc">โครงงานนวัตกรรมเพื่อช่วยเหลือชาวนา ต่อพระเจ้าวรวงศ์เธอ พระองค์เจ้าสิริภาจุฑาพร</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">⭐</div>
+                    <h3 class="achievement-title">31 สิงหาคม 2567 <br> 1 กันยาน 2567</h3>
+                    <p class="achievement-desc">โครงการนักประดิษฐ์หุ่นยนต์รุ่นเยาว์ ครั้งที่ 9 การแข่งขันสิ่งประดิษฐ์ หุ่นยนต์ ปัญญาประดิษฐ์และเทคโนโลยี (Kamalasai AI Robotics and Technology Thailand Championship #9)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>เกี่ยวกับเรา</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#vision-mission">วิสัยทัศน์และพันธกิจ</a></li>
+                        <li class="footer-link"><a href="#instructors">ทีมอาจารย์</a></li>
+                        <li class="footer-link"><a href="#history">ประวัติศูนย์</a></li>
+                        <li class="footer-link"><a href="#achievements">รางวัลและความสำเร็จ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ลิงก์ด่วน</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html#courses">หลักสูตร</a></li>
+                        <li class="footer-link"><a href="index.html#resources">แหล่งเรียนรู้</a></li>
+                        <li class="footer-link"><a href="index.html#exercises">แบบฝึกหัดและโปรเจค</a></li>
+                        <li class="footer-link"><a href="index.html#tracking">ระบบติดตามผล</a></li>
+                        <li class="footer-link"><a href="index.html#forum">ฟอรั่ม</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ติดต่อเรา</h3>
+                    <div class="contact-info">
+                        <span class="contact-icon">📧</span>
+                        <p>email@robotai-center.com</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📞</span>
+                        <p>123-456-7890</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📍</span>
+                        <p>123 ถนนนวัตกรรม แขวงเทคโนโลยี เขตปัญญาประดิษฐ์ กรุงเทพฯ</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61560814240110&locale=th_TH" class="social-link">FB</a>
+                        <a href="#" class="social-link">TW</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">YT</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

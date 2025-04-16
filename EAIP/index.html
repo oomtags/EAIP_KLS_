@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์ | Robot and AI Learning Center</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #c61313;
+            --secondary: #c61313;
+            --accent: #FFD700;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gradient: linear-gradient(145deg, #c61313, rgba(153, 50, 204, 0.8));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.25);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(15deg);
+        }
+        
+        .site-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .site-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .site-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin: 0 auto 20px;
+            max-width: 90%;
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            margin: 5px;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('/api/placeholder/1200/600') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            padding: 100px 0;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #c61313, rgba(153, 50, 204, 0.8));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Courses Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.2);
+        }
+        
+        .course-thumbnail {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-img {
+            transform: scale(1.1);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .course-desc {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .course-rating {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* News Section */
+        .news-section {
+            background-color: #f0f0f5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(106, 13, 173, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .news-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .news-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .news-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-list {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .news-list::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        
+        .news-item {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            flex: 0 0 350px; /* Fixed width for each news item */
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .news-date {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .news-content {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .news-source {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 10px;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px; /* Space between buttons and news list */
+        }
+        
+        .carousel-btn {
+            background-color: #FFD700; /* Match the green color from the image */
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .carousel-btn:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .news-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .featured-news {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .featured-news-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .featured-news-content {
+            flex: 1;
+        }
+        
+        .featured-news-content h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .featured-news-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .load-more-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .load-more-btn:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 5px solid transparent;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--accent);
+        }
+        
+        .resource-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(106, 13, 173, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover .resource-icon {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: rotateY(360deg);
+            transition: all 0.5s ease;
+        }
+        
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .resource-desc {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/100/100') center/50px repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .featured-news {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .featured-news-img {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .courses-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .news-item {
+                flex: 0 0 300px;
+                min-width: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="Learning Resources.html">
+    <link rel="stylesheet" href="Support.html">
+    <link rel="stylesheet" href="Tracking and Progress.html">
+    <link rel="stylesheet" href="Courses.html">
+    <link rel="stylesheet" href="Community.html">
+    <link rel="stylesheet" href="About Us.html">
+    <link rel="stylesheet" href="Exercises and Projects.html">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <img src="img/EAIP_preview_rev_1.png" alt="Robot and AI Learning Center Logo" class="logo">
+                    <div class="site-title">
+                        <h1>โครงการห้องเรียนพิเศษทางด้านเทคโนโลยี EAIP-IoTp</h1>
+                        <h2>Engineering and Artificial Intelligence Program (EAIP)</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">หน้าหลัก</a></li>
+                    <li class="nav-item"><a href="Courses.html" class="nav-link">หลักสูตร</a></li>
+                    <li class="nav-item"><a href="Learning Resources.html" class="nav-link">แหล่งเรียนรู้</a></li>
+                    <li class="nav-item"><a href="Exercises and Projects.html" class="nav-link">แบบฝึกหัดและโปรเจค</a></li>
+                    <li class="nav-item"><a href="Tracking and Progress.html" class="nav-link">ระบบติดตามผล</a></li>
+                    <li class="nav-item"><a href="Community.html" class="nav-link">ฟอรั่ม</a></li>
+                    <li class="nav-item"><a href="About Us.html" class="nav-link">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a href="support.html" class="nav-link">ช่วยเหลือ</a></li>
+                </ul>
+            </nav>  
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animated">โครงการห้องเรียนพิเศษ <br>ด้านเทคโนโลยี EAIP-IoTp </h1>
+            <h2 class="animated">ด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์</h2>
+            <p>Engineering and Artificial Intelligence Program (EAIP)</p>
+            <p>โรงเรียนกมลาไสย อ.กมลาไสย  จ.กาฬสินธุ์ สำนักงานเขตพื้นที่การศึกษามัธยมศึกษากาฬสินธุ์</p>
+            <a href="#courses" class="btn animated">ดูหลักสูตรของเรา</a>
+        </div>
+    </section>
+
+    <section id="courses" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">หลักสูตรยอดนิยม</h2>
+                <p class="section-subtitle">เลือกเรียนรู้ตามความสนใจและระดับทักษะของคุณ เพื่อพัฒนาความสามารถด้านหุ่นยนต์และ AI</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="img/Lotus Nano Bot.png" alt="Lotus Nano Bot" class="course-img">
+                        <div class="course-badge">มาใหม่</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Lotus Nano Bot</h3>
+                        <p class="course-desc">เรียนรู้การสร้างและเขียนโปรแกรมหุ่นยนต์ Lotus Nano Bot ขนาดเล็กสำหรับผู้เริ่มต้น</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เรียนรู้เพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="img/Lotus Mega Bot.png" alt="Lotus Mega Bot" class="course-img">
+                        <div class="course-badge">ยอดนิยม</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">บอร์ดหุ่นยนต์ Lotus Mega Bot</h3>
+                        <p class="course-desc">เรียนรู้การพัฒนาระบบ AI ด้วยภาษา Python พร้อมประยุกต์ใช้งานจริงในโครงการที่น่าสนใจ</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เรียนรู้เพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="img/Lotus Devkit  Bot.png" alt="Lotus Devkit Bot" class="course-img">
+                        <div class="course-badge">แนะนำ</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">บอร์ดหุ่นยนต์ Lotus Devkit V1.0</h3>
+                        <p class="course-desc">เรียนรู้การพัฒนาหุ่นยนต์อัตโนมัติที่สามารถทำงานด้วยตัวเองผ่านระบบ AI และเซนเซอร์ต่างๆ</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เรียนรู้เพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section section">
+        <div class="container news-container">
+            <div class="section-header">
+                <h2 class="section-title">ข่าวสารและประกาศ</h2>
+                <p class="section-subtitle">ติดตามข่าวสารและกิจกรรมล่าสุดของศูนย์การเรียนรู้ EAIP-IoTp</p>
+            </div>
+            
+            <div class="featured-news animated">
+                <img src="img/EAIP_preview_rev_1.png" alt="Featured News" class="featured-news-img">
+                <div class="featured-news-content">
+                    <h3>งานสัมมนาเทคโนโลยี AI และหุ่นยนต์ 2025</h3>
+                    <p>เข้าร่วมงานสัมมนาครั้งยิ่งใหญ่ประจำปี 2025 เพื่อสำรวจอนาคตของ AI และหุ่นยนต์ พร้อมเวิร์คช็อปจากผู้เชี่ยวชาญชั้นนำ!</p>
+                    <a href="#" class="btn">ลงทะเบียนเลย</a>
+                </div>
+            </div>
+            
+            <div class="news-carousel">
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="scrollNews('left')">❮</button>
+                    <button class="carousel-btn next" onclick="scrollNews('right')">❯</button>
+                </div>
+                <div class="news-list">
+                    <div class="news-item animated">
+                        <span class="news-date">วันพฤหัสบดีที่ 13 กุมภาพันธ์ 2568</span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/PORT.jpg" alt="News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">เรียนโครงการห้องเรียนพิเศษEAIP ดียังไง</h3>
+                        <p class="news-content">
+                            - นักเรียนโครงการห้องเรียนพิเศษเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP) โรงเรียนกมลาไสย ทางโครงการมีความมุ่งมั่นให้นักเรียนสร้างWebsiteเพื่อเก็บผลงานในค่ายปฐมนิเทศโครงการฯตั้งแต่ก้าวแรกที่เข้ามาในโครงการฯ  เพื่อให้มั่นใจว่าเมื่อนักเรียนอยู่ในระดับชั้นมัธยมศึกษาปีที่6  นักเรียนจะสามารถรวบรวมผลงานและสอบเข้าในระดับอุดมศึกษาติดตั้งแต่TCASรอบที่1 สำหรับตัวอย่างนักเรียนในโครงการในการจัดทำWebsite portfolio ของนักเรียนที่นี่ครับ (แค่ 1 ปี นักเรียนทุกคนในโครงการฯก็คว้ารางวัลระดับชาติกันแล้ว)</p>
+                        <a target="_blank" href="https://www.facebook.com/share/p/16SvrVxLKP/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    <div class="news-item animated">
+                        <span class="news-date">วันที่ 22 มกราคม 2568 </span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/ศรีสะเกษ เขต3 จังหวัดศรีสะเกษ.jpg" alt="News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">การแข่งขันหุ่นยนต์ระดับประเทศประจำปี 2025</h3>
+                        <p class="news-content">ในวันที่ 22 มกราคม 2568 นักเรียนโครงการห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP) ขอรายงานการแข่งขันการเข้าร่วมการแข่งขันหุ่นยนต์ระดับชาติ “หุ่นยนต์นอกสนาม” ชิงโล่รางวัลท่านสิริพงศ์ อังคสกุลเกียรติ ผู้ช่วยรัฐมนตรีประจำกระทรวงศึกษาธิการ  ณ สำนักงานเขตพื้นที่การศึกษาประถมศึกษาศรีสะเกษ เขต3 จังหวัดศรีสะเกษ
+                            1.คว้าโล่รางวัลชนะเลิศหุ่นยนต์ในชีวิตประจำวัน หุ่นยนต์ทำความสะอาด ระดับมัธยมศึกษาตอนปลาย
+                            2.คว้าโล่รางวัลชนะเลิศหุ่นยนต์ด้านความปลอดภัย หุ่นยนต์จราจร ระดับมัธยมศึกษาตอนปลาย
+                            ผู้ควบคุมทีม</p>
+                        <a target="_blank" href="https://web.facebook.com/share/p/1ACmPNpCB6/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    <div class="news-item animated">
+                        <span class="news-date">วันที่ 9 ธันวาคม 2567</span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/ได้รับทุนการศึกษาจากกรมการข้าว จังหวัดอุดรธานี.jpg"News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">นักเรียนโครงการห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP)</h3>
+                        <p class="news-content">ในวันที่ 9 ธันวาคม 2567 นักเรียนโครงการห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP) และ นักเรียนศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์ โรงเรียนกมลาไสย (RAIL) ได้รับทุนการศึกษาจากกรมการข้าว จังหวัดอุดรธานี เนื่องในโอกาสเข้ารับถวายงานแด่พระเจ้าบรมวงศ์เธอ พระองค์เจ้าสิริภาจุฑาภรณ์</p>
+                        <a target="_blank" href="https://web.facebook.com/share/p/1HX3ns3GhH/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    <div class="news-item animated">
+                        <span class="news-date">30 พฤศจิกายน  2567</span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/30 พฤศจิกายน  2567.jpg" alt="News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">ห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP) ได้รับโอกาสให้เป็นผู้ช่วยวิทยากรในกิจกรรมค่ายฝึกทักษะการเขียนโปรแกรมควบคุมหุ่นยนต์ ม.2-3 </h3>
+                        <p class="news-content">ในวันที่ 30 พฤศจิกายน  2567 และ วันที่ 1 ธันวาคม 2567 นักเรียนโครงการห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์ (EAIP) ได้รับโอกาสให้เป็นผู้ช่วยวิทยากรในกิจกรรมค่ายฝึกทักษะการเขียนโปรแกรมควบคุมหุ่นยนต์ ม.2-3 โครงการห้องเรียนพิเศษ วิทยาศาสตร์ คณิตศาสตร์ เทคโนโลยีและสิ่งแวดล้อม (SMTE)</p>
+                        <a target="_blank" href="https://web.facebook.com/share/p/1BSnMQ5dTN/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    <div class="news-item animated">
+                        <span class="news-date">21 พฤศจิกายน 2567</span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/โครงงานนวัตกรรมเพื่อช่วยเหลือชาวนา ต่อพระเจ้าวรวงศ์เธอ พระองค์เจ้าสิริภาจุฑาพร.jpg" alt="News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">โครงงานนวัตกรรมเพื่อช่วยเหลือชาวนา ต่อพระเจ้าวรวงศ์เธอ พระองค์เจ้าสิริภาจุฑาพร</h3>
+                        <p class="news-content">วันที่ 21 พฤศจิกายน  2567 นักเรียนโครงการห้องเรียนพิเศษทางด้านเทคโนโลยีวิศวกรรมและปัญญาประดิษฐ์(EAIP) และนักเรียนศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์ โรงเรียนกมลาไสย (RAIL) ได้มีโอกาสทูลถวายงานทางด้านโครงงานนวัตกรรมเพื่อช่วยเหลือชาวนา ต่อพระเจ้าวรวงศ์เธอ พระองค์เจ้าสิริภาจุฑาพร  ที่ใช้เทคโนโลยีทางด้านอินเตอร์เน็ตในสรรพสิ่ง(IoT) และปัญญาประดิษฐ์ด้วยPlatform CiRA CORE ณ กรมการข้าว จังหวัดอุดรธานี</p>
+                        <a target="_blank" href="https://web.facebook.com/share/p/1A81Ne8hAu/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    <div class="news-item animated">
+                        <span class="news-date">22 พฤศจิกายน  2567</span>
+                        <span class="news-category">ประกาศ</span>
+                        <img src="img index/สำนักงานเขตพื้นที่การศึกษามัธยมศึกษากาฬสิน.jpg" alt="News Thumbnail" class="news-thumbnail">
+                        <h3 class="news-title">22 พฤศจิกายน  2567 </h3>
+                        <p class="news-content">ได้รับมอบหมายจากสำนักงานเขตพื้นที่การศึกษามัธยมศึกษากาฬสินธุ์ นำหุ่นยนต์น้องไออุ่น และหุ่นยนต์นางรำมาร่วมการเปิดงานมหกรรมวิชาการ “ปฏิวัติการศึกษา พัฒนา สพม.กาฬสินธุ์ สู่การเรียนรู้วิถีใหม่  Innovating Education of Kalasin ‘s Future and a New Ear of  Leaning” โดยมีนท่านสุรศักดิ์ พันธ์เจริญวรกุล รัฐมนตรีช่วยว่าการกระทรวงศึกษาธิการ เป็นประธานในการเปิดงานในครั้งนี้</p>
+                        <a target="_blank" href="https://web.facebook.com/share/p/153Upq5t5gB/" class="btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </section>
+
+    <section id="resources" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">แหล่งเรียนรู้</h2>
+                <p class="section-subtitle">ค้นพบแหล่งเรียนรู้ที่หลากหลายเพื่อพัฒนาทักษะด้านหุ่นยนต์และ AI</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📚</div>
+                    <h3 class="resource-title">เอกสารประกอบการเรียน</h3>
+                    <p class="resource-desc">รวบรวมเอกสาร บทความ และคู่มือการใช้งานที่เป็นประโยชน์ทั้งภาษาไทยและภาษาอังกฤษ</p>
+                    <a href="#" class="btn">เข้าดูเอกสาร</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎬</div>
+                    <h3 class="resource-title">วิดีโอการสอน</h3>
+                    <p class="resource-desc">คลังวิดีโอบทเรียนสำหรับการเรียนรู้ด้วยตนเอง โดยผู้เชี่ยวชาญในแต่ละด้าน</p>
+                    <a href="#" class="btn">ดูวิดีโอ</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">💻</div>
+                    <h3 class="resource-title">แหล่งโค้ดและโปรเจค</h3>
+                    <p class="resource-desc">เข้าถึง GitHub Repository ที่รวบรวมโค้ดและตัวอย่างโปรเจคสำหรับการเรียนรู้และพัฒนาต่อยอด</p>
+                    <a href="#" class="btn">ดูโค้ดและโปรเจค</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exercises" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">แบบฝึกหัดและโปรเจค</h2>
+                <p class="section-subtitle">ฝึกฝนทักษะของคุณผ่านแบบฝึกหัดและโปรเจคจริงที่ออกแบบมาเพื่อการเรียนรู้</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Basic Robot Project" class="course-img">
+                        <div class="course-badge">แนะนำ</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">โปรเจคหุ่นยนต์พื้นฐาน</h3>
+                        <p class="course-desc">ฝึกสร้างหุ่นยนต์ง่าย ๆ ด้วยอุปกรณ์พื้นฐาน พร้อมเรียนรู้การเขียนโค้ดควบคุม</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เริ่มต้นโปรเจค</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="AI Sensor Project" class="course-img">
+                        <div class="course-badge">ระดับกลาง</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">โปรเจคเซนเซอร์ AI</h3>
+                        <p class="course-desc">พัฒนาระบบเซนเซอร์อัจฉริยะโดยใช้ AI เพื่อการประมวลผลข้อมูลแบบเรียลไทม์</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เริ่มต้นโปรเจค</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Autonomous Robot Project" class="course-img">
+                        <div class="course-badge">ระดับสูง</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">โปรเจคหุ่นยนต์อัตโนมัติ</h3>
+                        <p class="course-desc">สร้างหุ่นยนต์ที่สามารถเคลื่อนที่และตัดสินใจได้ด้วยตัวเองโดยใช้ AI</p>
+                        <div class="course-meta">
+                            <span class="course-rating">⭐⭐⭐⭐⭐ (5)</span>
+                            <a href="#" class="btn">เริ่มต้นโปรเจค</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracking" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ระบบติดตามผล</h2>
+                <p class="section-subtitle">ติดตามความก้าวหน้าและผลการเรียนรู้ของคุณได้อย่างง่ายดาย</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <h3 class="resource-title">แดชบอร์ดส่วนตัว</h3>
+                    <p class="resource-desc">ดูความก้าวหน้าของคุณในหลักสูตรและโปรเจคต่าง ๆ ได้ในที่เดียว</p>
+                    <a href="#" class="btn">เข้าสู่แดชบอร์ด</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📅</div>
+                    <h3 class="resource-title">กำหนดการเรียน</h3>
+                    <p class="resource-desc">วางแผนการเรียนรู้ด้วยตารางเรียนและการแจ้งเตือนส่วนตัว</p>
+                    <a href="#" class="btn">ดูตารางเรียน</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🏆</div>
+                    <h3 class="resource-title">รางวัลและใบรับรอง</h3>
+                    <p class="resource-desc">รับใบรับรองเมื่อเรียนจบหลักสูตรและรางวัลสำหรับความสำเร็จ</p>
+                    <a href="#" class="btn">ดูรางวัล</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="forum" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ฟอรั่ม</h2>
+                <p class="section-subtitle">พบปะ พูดคุย และแลกเปลี่ยนความรู้กับชุมชนนักเรียนรู้ด้านหุ่นยนต์และ AI</p>
+            </div>
+            
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">12 เมษายน 2025</span>
+                    <h3 class="news-title">กระทู้: ปัญหาการเขียนโค้ดสำหรับ Lotus Nano Bot</h3>
+                    <p class="news-content">ผู้ใช้รายหนึ่งพบปัญหาในการเขียนโค้ดควบคุมเซนเซอร์ของ Lotus Nano Bot มาร่วมช่วยกันแก้ไข!</p>
+                    <a href="#" class="btn">เข้าร่วม討論</a>
+                </div>
+                
+                <div class="news-item">
+                    <span class="news-date">10 เมษายน 2025</span>
+                    <h3 class="news-title">กระทู้: แชร์ไอเดียโปรเจคหุ่นยนต์</h3>
+                    <p class="news-content">มาร่วมแชร์ไอเดียและแรงบันดาลใจสำหรับโปรเจคหุ่นยนต์ในอนาคต</p>
+                    <a href="#" class="btn">เข้าร่วม討論</a>
+                </div>
+                
+                <div class="news-item">
+                    <span class="news-date">8 เมษายน 2025</span>
+                    <h3 class="news-title">กระทู้: ถาม-ตอบเกี่ยวกับการแข่งขันหุ่นยนต์</h3>
+                    <p class="news-content">มีคำถามเกี่ยวกับการแข่งขันหุ่นยนต์ 2025 หรือไม่? เข้ามาคุยกันได้ที่นี่</p>
+                    <a href="#" class="btn">เข้าร่วม討論</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">เกี่ยวกับเรา</h2>
+                <p class="section-subtitle">เรียนรู้เพิ่มเติมเกี่ยวกับศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🤖</div>
+                    <h3 class="resource-title">พันธกิจของเรา</h3>
+                    <p class="resource-desc">มุ่งมั่นส่งเสริมการเรียนรู้ด้านหุ่นยนต์และ AI เพื่อสร้างนวัตกรรมแห่งอนาคต</p>
+                    <a href="#" class="btn">อ่านเพิ่มเติม</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">👥</div>
+                    <h3 class="resource-title">ทีมงานของเรา</h3>
+                    <p class="resource-desc">พบกับทีมผู้เชี่ยวชาญที่พร้อมให้คำแนะนำและสนับสนุนการเรียนรู้ของคุณ</p>
+                    <a href="#" class="btn">พบทีมงาน</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🏫</div>
+                    <h3 class="resource-title">ประวัติศูนย์</h3>
+                    <p class="resource-desc">เรียนรู้เส้นทางการเติบโตของศูนย์ตั้งแต่ก่อตั้งจนถึงปัจจุบัน</p>
+                    <a href="#" class="btn">อ่านประวัติ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>เกี่ยวกับเรา</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#about">พันธกิจของเรา</a></li>
+                        <li class="footer-link"><a href="#about">ทีมงานของเรา</a></li>
+                        <li class="footer-link"><a href="#about">ประวัติศูนย์</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ลิงก์ด่วน</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#courses">หลักสูตร</a></li>
+                        <li class="footer-link"><a href="#resources">แหล่งเรียนรู้</a></li>
+                        <li class="footer-link"><a href="#exercises">แบบฝึกหัดและโปรเจค</a></li>
+                        <li class="footer-link"><a href="#tracking">ระบบติดตามผล</a></li>
+                        <li class="footer-link"><a href="#forum">ฟอรั่ม</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ติดต่อเรา</h3>
+                    <div class="contact-info">
+                        <span class="contact-icon">📧</span>
+                        <p>email@robotai-center.com</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📞</span>
+                        <p>123-456-7890</p>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-icon">📍</span>
+                        <p>123 ถนนนวัตกรรม แขวงเทคโนโลยี เขตปัญญาประดิษฐ์ กรุงเทพฯ</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61560814240110&locale=th_TH" class="social-link">FB</a>
+                        <a href="#" class="social-link">TW</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">YT</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright"> 2025 ศูนย์การเรียนรู้หุ่นยนต์และปัญญาประดิษฐ์. </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollNews(direction) {
+            const newsList = document.querySelector('.news-list');
+            const scrollAmount = 380; // ความกว้าง 1 ชิ้น (350px) + ช่องว่าง (30px)
+
+            if (direction === 'left') {
+                newsList.scrollLeft -= scrollAmount;
+            } else if (direction === 'right') {
+                newsList.scrollLeft += scrollAmount;
+            }
+        }
+    </script>
+</body>
+</html>
